@@ -1,18 +1,20 @@
 %%Input zone
-data = imread('');
+data = cat(3,imread('banda1.tif'),imread('banda2.tif'),imread('banda3.tif'),imread('banda4.tif'),imread('banda5.tif'),imread('banda6.tif'));
 
-centroides = sum(data,2)/ size(data,1);
+centroides = sum(data,3)/ size(data,3);
 
 %pre-normalización
 aux = zeros(size(data));
 
-for c = 1:size(data,2)
-    aux(:,c) = centroide(c);
+for x = 1:size(data,1)
+    for y = 1:size(data,2)
+        aux(x,y,:) = centroides(x,y);
+    end
 end
 
-normalizado = data - aux;
+normalizado = double(data) - aux;
 
-covarianzas = (normalizado' * normalizado)/size(data,1);
+covarianzas = (normalizado' * normalizado)/size(data,3);
 
 [eignv, eignvls] = eig(covarianzas);
 
