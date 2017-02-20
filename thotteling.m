@@ -80,4 +80,4 @@ im1=uint8(arrayfun(@(x) find(abs(d(:)-x)==min(abs(d(:)-x))),im));
 subplot(3,2,6), imshow(im1);
 
 %plot the errors
-plot(1:6,errors);
+figure,plot(1:6,errors);
