@@ -13,9 +13,11 @@ data = double(data);
 
 C = cov(data);
 [SortedEV,SortedEVls] = eigs(C);
+SortedEV = SortedEV';
+SortedEV = flip(SortedEV);
 mx=mean(mean(data));
 
-y = SortedEV'*(data'-mx);
+y = SortedEV*(data'-mx);
  
 b1 = reshape(y(1,:),size(imread('banda1.tif')));
 b2 = reshape(y(2,:),size(imread('banda1.tif')));
